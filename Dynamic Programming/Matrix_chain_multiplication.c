@@ -47,7 +47,7 @@ int main()
     int p[] = {30, 35, 15, 5, 10, 20, 25}; // Matrix dimensions
 
     int m[n + 1][n + 1]; // Cost matrix
-    int s[n][n + 1];     // Split matrix
+    int s[n + 1][n + 1]; // Split matrix
 
     matrixChainOrder(p, n, m, s);
 
