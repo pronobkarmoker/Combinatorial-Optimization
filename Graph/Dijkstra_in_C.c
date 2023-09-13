@@ -1,49 +1,49 @@
 #include <stdio.h>
 #include <math.h>
-#define size 4
+#define size 5
 #define visited 1
 #define unvisited 2
 
-int graph[4][4] = {0};
+#define LARGE_INT 2147483647 
+
+int graph[5][5] = {0};
 enum cities
 {
-    A,
-    B,
-    C,
-    D,
-    E,
-    F,
-    G
+    Dhaka,
+    Chattogram,
+    Khulna,
+    Rajshahi,
+    Sylhet
 };
 struct vertex
 {
     char city;
     int cost;
     int path;
-    int state
+    int state;
 };
 
-struct vertex vartices[4];
+struct vertex vertices[5];
 
 void dijkstra(int source, int destination)
 {
     for (int v = 0; v < size; v++)
     {
-        vartices[v].city = v + 65;
-        vartices[v].cost = INFINITY;
-        vartices[v].path = -1;
-        vartices[v].state = unvisited;
+        vertices[v].city = v + 65;
+        vertices[v].cost = LARGE_INT;
+        vertices[v].path = -1;
+        vertices[v].state = unvisited;
     }
 
-    vartices[source].cost = 0;
+    vertices[source].cost = 0;
     for (;;)
     {
-        int minCost = INFINITY, current = -1;
+        int minCost = LARGE_INT, current = -1;
         for (int v = 0; v < size; v++)
         {
-            if (vartices[v].cost < minCost && vartices[v].state == unvisited)
+            if (vertices[v].cost < minCost && vertices[v].state == unvisited)
             {
-                minCost = vartices[v].cost;
+                minCost = vertices[v].cost;
                 current = v;
             }
         }
@@ -52,21 +52,21 @@ void dijkstra(int source, int destination)
             break;
         }
 
-        vartices[current].state = visited;
+        vertices[current].state = visited;
         for (int v = 0; v < size; v++)
         {
-            if (graph[current][v] != 0 && vartices[v].state == unvisited && graph[current][v] != -1)
+            if (graph[current][v] != 0 && vertices[v].state == unvisited && graph[current][v] != -1)
             {
-                if (vartices[current].cost + graph[current][v] < vartices[v].cost)
+                if (vertices[current].cost + graph[current][v] < vertices[v].cost)
                 {
-                    vartices[v].cost = vartices[current].cost + graph[current][v];
-                    vartices[v].path = current;
+                    vertices[v].cost = vertices[current].cost + graph[current][v];
+                    vertices[v].path = current;
                 }
             }
         }
     }
 
-    if (vartices[destination].cost == INFINITY)
+    if (vertices[destination].cost == LARGE_INT)
     {
         printf("NOT CONNECTED!!!");
     }
@@ -77,7 +77,7 @@ void dijkstra(int source, int destination)
         {
             count++;
             path[count] = destination;
-            x = vartices[destination].path;
+            x = vertices[destination].path;
             cost += graph[x][destination];
             destination = x;
         }
@@ -85,7 +85,7 @@ void dijkstra(int source, int destination)
         path[count] = source;
         for (int i = count; i > 0; i--)
         {
-            printf("%c ", vartices[path[i]].city);
+            printf("%c ", vertices[path[i]].city);
             if (i > 1)
                 printf("-");
         }
@@ -108,6 +108,6 @@ void scanarray()
 int main(void)
 {
     scanarray();
-    dijkstra(A, D);
+    dijkstra(Dhaka, Sylhet);
     return 0;
 }
