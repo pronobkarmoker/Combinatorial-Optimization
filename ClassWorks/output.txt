@@ -1,0 +1,9 @@
+source: 7 ------  destination : 8
+source: 3 ------  destination : 9
+source: 6 ------  destination : 7
+source: 1 ------  destination : 2
+source: 3 ------  destination : 6
+source: 3 ------  destination : 4
+source: 1 ------  destination : 8
+source: 4 ------  destination : 5
+total weight : 37
