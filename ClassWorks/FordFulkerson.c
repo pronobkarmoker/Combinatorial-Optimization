@@ -66,13 +66,13 @@ int fordFulkerson(int graph[V][V], int source, int sink)
             pathFlow = min(pathFlow, residualGraph[u][v]);
         }
 
-        printf("Augmenting Path: ");
-        for (v = sink; v != source; v = parent[v])
-        {
-            u = parent[v];
-            printf("%d -> ", u);
-        }
-        printf("%d\n", sink);
+        // printf("Augmenting Path: ");
+        // for (v = sink; v != source; v = parent[v])
+        // {
+        //     u = parent[v];
+        //     printf("%d -> ", u);
+        // }
+        // printf("%d\n", sink);
 
         for (v = sink; v != source; v = parent[v])
         {
